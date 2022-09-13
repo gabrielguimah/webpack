@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
 
 // entry - primeiro arquivo a ser carregado
 // output - pasta onde será gravado o resultado final do processamento do projeto
@@ -21,6 +22,10 @@ module.exports = {
         rules: [
             { test: /\.css$/, use: [MiniCssExtractPlugin.loader, 'css-loader'] }
         ]
+    },
+    optimization: {
+        minimize: true,
+        minimizer: [new CssMinimizerWebpackPlugin()]
     },
     plugins: [
         new HtmlWebpackPlugin({
