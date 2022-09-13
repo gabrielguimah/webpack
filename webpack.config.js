@@ -35,15 +35,19 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './app/src/app.html',
-            filename: 'app.html',
+            template: './app/src/index.html',
+            filename: 'index.html',
             hash: true
         }),
         new MiniCssExtractPlugin({
             filename: 'style.css'
         }),
         new webpack.optimize.ModuleConcatenationPlugin()
-    ]
+    ],
+    devServer: {
+        contentBase: path.resolve(__dirname, 'dist'),
+        port: 3000
+    }
 }
 
 // É a nossa aplicação que dita quais módulos devem ser 
