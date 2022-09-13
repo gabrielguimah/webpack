@@ -1,4 +1,5 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // entry - primeiro arquivo a ser carregado
 // output - pasta onde será gravado o resultado final do processamento do projeto
@@ -9,7 +10,13 @@ module.exports = {
     entry: './app/src/js/app.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'app/dist')
+        path: path.resolve(__dirname, 'app/dist'),
         // caminho absoluto
-    }
+        clean: true
+        // limpa pasta antiga ao gerar outro build
+    },
+    plugins: [new HtmlWebpackPlugin({
+        template: './app/src/app.html',
+        filename: 'app.html'
+    })]
 }
