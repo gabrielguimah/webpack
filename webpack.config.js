@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
+const webpack = require('webpack')
 
 // entry - primeiro arquivo a ser carregado
 // output - pasta onde será gravado o resultado final do processamento do projeto
@@ -24,9 +25,11 @@ module.exports = {
         ]
     },
     optimization: {
+        // compacta o css
         minimize: true,
         minimizer: [
             new CssMinimizerWebpackPlugin(),
+            //adiciona o minimizer, porém mantém os outros padrões
             '...'
         ]
     },
@@ -38,6 +41,7 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: 'style.css'
-        })
+        }),
+        new webpack.optimize.ModuleConcatenationPlugin()
     ]
 }
