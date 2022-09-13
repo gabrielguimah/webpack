@@ -18,7 +18,6 @@ module.exports = {
     },
     module: {
         // css-loader - adiciona o css dentro do bundle.js
-        // style-loader - adiciona dinamicamente no DOM o arquivo css que foi adicionado ao bundle
         rules: [
             { test: /\.css$/, use: [MiniCssExtractPlugin.loader, 'css-loader'] }
         ]
