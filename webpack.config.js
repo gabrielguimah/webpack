@@ -45,3 +45,8 @@ module.exports = {
         new webpack.optimize.ModuleConcatenationPlugin()
     ]
 }
+
+// É a nossa aplicação que dita quais módulos devem ser 
+// carregados de maneira lazy. É papel do webpack detectar 
+// em nossa apliação quais módulos são carregados de maneira 
+// lazy para então realizar o code splitting do módulo.
