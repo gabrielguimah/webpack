@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 // entry - primeiro arquivo a ser carregado
 // output - pasta onde será gravado o resultado final do processamento do projeto
@@ -16,8 +17,10 @@ module.exports = {
         // limpa pasta antiga ao gerar outro build
     },
     module: {
+        // css-loader - adiciona o css dentro do bundle.js
+        // style-loader - adiciona dinamicamente no DOM o arquivo css que foi adicionado ao bundle
         rules: [
-            { test: /\.css$/, use: ['style-loader', 'css-loader'] }
+            { test: /\.css$/, use: [MiniCssExtractPlugin.loader, 'css-loader'] }
         ]
     },
     plugins: [
@@ -25,6 +28,9 @@ module.exports = {
             template: './app/src/app.html',
             filename: 'app.html',
             hash: true
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'style.css'
         })
     ]
 }
